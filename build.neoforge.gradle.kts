@@ -1,30 +1,25 @@
 plugins {
-    id("net.neoforged.moddev") version "2.0.140"
-    id("neoforge-mutex")
+	id("net.neoforged.moddev") version "2.0.140"
+	id("neoforge-mutex")
 }
 
+val modId = property("mod.id") as String
 version = "${property("mod.version")}+${sc.current.version}"
-base.archivesName = "${property("mod.id") as String}-neoforge"
+base.archivesName = "${modId}-neoforge"
 
-val requiredJava = when {
-    sc.current.parsed >= "26.1" -> JavaVersion.VERSION_25
-    sc.current.parsed >= "1.20.5" -> JavaVersion.VERSION_21
-    sc.current.parsed >= "1.18" -> JavaVersion.VERSION_17
-    sc.current.parsed >= "1.17" -> JavaVersion.VERSION_16
-    else -> JavaVersion.VERSION_1_8
-}
+val requiredJava = JavaVersion.VERSION_25
 
 repositories {
-    /**
-     * Restricts dependency search of the given [groups] to the [maven URL][url],
-     * improving the setup speed.
-     */
-    fun strictMaven(url: String, alias: String, vararg groups: String) = exclusiveContent {
-        forRepository { maven(url) { name = alias } }
-        filter { groups.forEach(::includeGroup) }
-    }
-    strictMaven("https://www.cursemaven.com", "CurseForge", "curse.maven")
-    strictMaven("https://api.modrinth.com/maven", "Modrinth", "maven.modrinth")
+	/**
+	 * Restricts dependency search of the given [groups] to the [maven URL][url],
+	 * improving the setup speed.
+	 */
+	fun strictMaven(url: String, alias: String, vararg groups: String) = exclusiveContent {
+		forRepository { maven(url) { name = alias } }
+		filter { groups.forEach(::includeGroup) }
+	}
+	strictMaven("https://www.cursemaven.com", "CurseForge", "curse.maven")
+	strictMaven("https://api.modrinth.com/maven", "Modrinth", "maven.modrinth")
 }
 
 dependencies {
@@ -32,61 +27,75 @@ dependencies {
 }
 
 neoForge {
-    version = property("deps.neo_loader") as String
+	version = property("deps.neo_loader") as String
 
-    runs {
-        register("client") {
-            gameDirectory = file("../../run/")
-            client()
-        }
+	runs {
+		register("client") {
 
-        register("server") {
-            gameDirectory = file("../../run/")
-            server()
-        }
-    }
+			client()
+
+			systemProperty("neoforge.enabledGameTestNamespaces", modId)
+		}
+
+		register("server") {
+			gameDirectory = file("./serverrun/")
+			server()
+
+			systemProperty("neoforge.enabledGameTestNamespaces", modId)
+		}
+	}
+
+	mods {
+		// define mod <-> source bindings
+		// these are used to tell the game which sources are for which mod
+		// multi mod projects should define one per mod
+		register(modId) {
+			sourceSet(sourceSets["main"])
+		}
+	}
 }
 
 java {
-    withSourcesJar()
-    targetCompatibility = requiredJava
-    sourceCompatibility = requiredJava
+	withSourcesJar()
+	targetCompatibility = requiredJava
+	sourceCompatibility = requiredJava
 }
 
 tasks {
-    processResources {
-        fun MutableMap<String, String>.register(key: String, property: String) {
-            val value: String = sc.properties[property]
-            inputs.property(key, value)
-            set(key, value)
-        }
+	processResources {
+		fun MutableMap<String, String>.register(key: String, property: String) {
+			val value: String = sc.properties[property]
+			inputs.property(key, value)
+			set(key, value)
+		}
 
-        val props = buildMap {
-            register("id", "mod.id")
-            register("name", "mod.name")
-            register("version", "mod.version")
-            register("minecraft", "mod.mc_compat")
-        }
+		val props = buildMap {
+			register("id", "mod.id")
+			register("name", "mod.name")
+			register("version", "mod.version")
+			register("minecraft", "mod.mc_compat")
+			register("description", "mod.description")
+		}
 
-        filesMatching("META-INF/neoforge.mods.toml") { expand(props) }
+		filesMatching("META-INF/neoforge.mods.toml") { expand(props) }
 
-        val mixinJava = "JAVA_${requiredJava.majorVersion}"
-        filesMatching("*.mixins.json") { expand("java" to mixinJava) }
+		val mixinJava = "JAVA_${requiredJava.majorVersion}"
+		filesMatching("*.mixins.json") { expand("java" to mixinJava) }
 
-        exclude("fabric.mod.json", "*.ct", "*.classtweaker")
-    }
+		exclude("fabric.mod.json", "*.ct", "*.classtweaker")
+	}
 
-    named("createMinecraftArtifacts") {
-        dependsOn("stonecutterGenerate")
-    }
+	named("createMinecraftArtifacts") {
+		dependsOn("stonecutterGenerate")
+	}
 
-    // Builds the version into a shared folder in `build/libs/${mod version}/`
-    register<Copy>("buildAndCollect") {
-        group = "build"
-        description = "Builds mod jars and copies results to `build/libs/{mod version}/`"
+	// Builds the version into a shared folder in `build/libs/${mod version}/`
+	register<Copy>("buildAndCollect") {
+		group = "build"
+		description = "Builds mod jars and copies results to `build/libs/{mod version}/`"
 
-        inputs.property("version", project.property("mod.version"))
-        from(jar.flatMap { it.archiveFile }, named<Jar>("sourcesJar").flatMap { it.archiveFile })
-        into(rootProject.layout.buildDirectory.file("libs/${project.property("mod.version")}"))
-    }
+		inputs.property("version", project.property("mod.version"))
+		from(jar.flatMap { it.archiveFile }, named<Jar>("sourcesJar").flatMap { it.archiveFile })
+		into(rootProject.layout.buildDirectory.file("libs/${project.property("mod.version")}"))
+	}
 }

@@ -1,0 +1,10 @@
+{
+  "parent": "rewired:block/template_gate",
+  "textures": {
+    "center_input": "minecraft:block/redstone_torch_off",
+    "label": "rewired:block/or_gate_label",
+    "left_input": "minecraft:block/redstone_torch_off",
+    "right_input": "minecraft:block/redstone_torch_off",
+    "torch": "minecraft:block/redstone_torch"
+  }
+}

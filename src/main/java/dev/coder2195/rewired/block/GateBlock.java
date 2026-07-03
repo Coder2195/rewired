@@ -57,11 +57,13 @@ public abstract class GateBlock extends DiodeBlock {
 
 		int centerSignal = Math.max(level.getSignal(centerPos, direction), centerBlockState.is(Blocks.REDSTONE_WIRE) ? centerBlockState.getValue(RedStoneWireBlock.POWER) : 0);
 
-		BlockPos rightPos = pos.relative(direction.getCounterClockWise());
+		direction = direction.getCounterClockWise();
+		BlockPos rightPos = pos.relative(direction);
 		BlockState rightBlockState = level.getBlockState(rightPos);
 		int rightSignal = Math.max(level.getSignal(rightPos, direction), rightBlockState.is(Blocks.REDSTONE_WIRE) ? rightBlockState.getValue(RedStoneWireBlock.POWER) : 0);
 
-		BlockPos leftPos = pos.relative(direction.getClockWise());
+		direction = direction.getOpposite();
+		BlockPos leftPos = pos.relative(direction);
 		BlockState leftBlockState = level.getBlockState(leftPos);
 		int leftSignal = Math.max(level.getSignal(leftPos, direction), leftBlockState.is(Blocks.REDSTONE_WIRE) ? leftBlockState.getValue(RedStoneWireBlock.POWER) : 0);
 

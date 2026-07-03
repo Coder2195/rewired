@@ -1,5 +1,6 @@
 plugins {
 	id("net.fabricmc.fabric-loom")
+	id("dev.kikugie.fletching-table.fabric") version "0.1.0-alpha.22"
 }
 
 // DO NOT set group = ...!
@@ -34,11 +35,12 @@ dependencies {
 loom {
 	fabricModJsonPath = rootProject.file("src/main/resources/fabric.mod.json") // Useful for interface injection
 	accessWidenerPath = sc.process(
-		rootProject.file("src/main/resources/rearmament.ct"),
+		rootProject.file("src/main/resources/rewired.ct"),
 		"build/processed.ct"
 	)
 
 	splitEnvironmentSourceSets()
+
 
 	decompilerOptions.named("vineflower") {
 		options.put("mark-corresponding-synthetics", "1")
@@ -58,6 +60,13 @@ loom {
 	}
 }
 
+fabricApi {
+	configureDataGeneration {
+		client = true
+		outputDirectory = rootProject.file("src/generated/resources")
+	}
+}
+
 java {
 	withSourcesJar()
 	targetCompatibility = requiredJava
@@ -67,6 +76,10 @@ java {
 		vendor = JvmVendorSpec.ADOPTIUM
 		languageVersion = JavaLanguageVersion.of(requiredJava.majorVersion)
 	}
+}
+
+tasks.withType<ProcessResources> {
+	dependsOn("stonecutterGenerate")
 }
 
 tasks {
@@ -92,6 +105,7 @@ tasks {
 
 		exclude("META-INF/neoforge.mods.toml")
 	}
+
 
 	register<Copy>("buildAndCollect") {
 		group = "build"

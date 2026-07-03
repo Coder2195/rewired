@@ -1,7 +1,7 @@
 # See https://stonecutter.kikugie.dev/wiki/config/properties#centralized-properties
-mod.id = "rearmament"
-mod.name = "Rearmament"
-mod.group = "dev.coder2195.rearmament"
+mod.id = "rewired"
+mod.name = "Rewired"
+mod.group = "dev.coder2195.rewired"
 mod.description = "new mod lol"
 mod.version = "0.1.0"
 

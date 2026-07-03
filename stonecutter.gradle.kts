@@ -2,7 +2,7 @@ plugins {
 	id("dev.kikugie.stonecutter")
 }
 
-stonecutter active "fabric"
+stonecutter active "neoforge"
 
 // See https://stonecutter.kikugie.dev/wiki/config/params
 stonecutter parameters {

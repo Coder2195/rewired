@@ -1,0 +1,141 @@
+{
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"textures": {
+		"slab": "block/smooth_stone",
+		"particle": "rewired:block/gate",
+		"top": "rewired:block/gate",
+		"torch": "block/redstone_torch",
+		"left_input": "block/redstone_torch",
+		"label": "rewired:block/label",
+		"center_input": "block/redstone_torch",
+		"right_input": "block/redstone_torch"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 2, 16],
+			"faces": {
+				"north": {"uv": [0, 14, 16, 16], "texture": "#slab", "cullface": "north"},
+				"east": {"uv": [0, 14, 16, 16], "texture": "#slab", "cullface": "east"},
+				"south": {"uv": [0, 14, 16, 16], "texture": "#slab", "cullface": "south"},
+				"west": {"uv": [0, 14, 16, 16], "texture": "#slab", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#top"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#slab", "cullface": "down"}
+			}
+		},
+		{
+			"from": [0, 2, 7],
+			"to": [2, 4, 9],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [-7, 0, 5]},
+			"faces": {
+				"north": {"uv": [7, 6, 9, 8], "texture": "#left_input"},
+				"east": {"uv": [7, 6, 9, 8], "texture": "#left_input"},
+				"south": {"uv": [7, 6, 9, 8], "texture": "#left_input"},
+				"west": {"uv": [7, 6, 9, 8], "texture": "#left_input"},
+				"up": {"uv": [7, 6, 9, 8], "texture": "#left_input"}
+			}
+		},
+		{
+			"from": [7, 2, 14],
+			"to": [9, 4, 16],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 12]},
+			"faces": {
+				"north": {"uv": [7, 6, 9, 8], "texture": "#center_input"},
+				"east": {"uv": [7, 6, 9, 8], "texture": "#center_input"},
+				"south": {"uv": [7, 6, 9, 8], "texture": "#center_input"},
+				"west": {"uv": [7, 6, 9, 8], "texture": "#center_input"},
+				"up": {"uv": [7, 6, 9, 8], "texture": "#center_input"}
+			}
+		},
+		{
+			"from": [14, 2, 7],
+			"to": [16, 4, 9],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 5]},
+			"faces": {
+				"north": {"uv": [7, 6, 9, 8], "texture": "#right_input"},
+				"east": {"uv": [7, 6, 9, 8], "texture": "#right_input"},
+				"south": {"uv": [7, 6, 9, 8], "texture": "#right_input"},
+				"west": {"uv": [7, 6, 9, 8], "texture": "#right_input"},
+				"up": {"uv": [7, 6, 9, 8], "texture": "#right_input"}
+			}
+		},
+		{
+			"from": [7, 2, 2],
+			"to": [9, 7, 4],
+			"shade": false,
+			"faces": {
+				"north": {"uv": [7, 6, 9, 11], "texture": "#torch"},
+				"east": {"uv": [7, 6, 9, 11], "texture": "#torch"},
+				"south": {"uv": [7, 6, 9, 11], "texture": "#torch"},
+				"west": {"uv": [7, 6, 9, 11], "texture": "#torch"},
+				"up": {"uv": [7, 6, 9, 8], "texture": "#torch"}
+			}
+		},
+		{
+			"from": [6.5, 1.5, 1.5],
+			"to": [9.5, 4.5, 4.5],
+			"shade": false,
+			"faces": {
+				"up": {"uv": [8, 5, 9, 6], "texture": "#torch"}
+			}
+		},
+		{
+			"from": [6.5, 7.5, 1.5],
+			"to": [9.5, 10.5, 4.5],
+			"shade": false,
+			"faces": {
+				"down": {"uv": [7, 5, 8, 6], "texture": "#torch"}
+			}
+		},
+		{
+			"from": [6.5, 4.5, -1.5],
+			"to": [9.5, 7.5, 1.5],
+			"shade": false,
+			"faces": {
+				"south": {"uv": [9, 6, 10, 7], "texture": "#torch"}
+			}
+		},
+		{
+			"from": [6.5, 4.5, 4.5],
+			"to": [9.5, 7.5, 7.5],
+			"shade": false,
+			"faces": {
+				"north": {"uv": [6, 6, 7, 7], "texture": "#torch"}
+			}
+		},
+		{
+			"from": [3.5, 4.5, 1.5],
+			"to": [6.5, 7.5, 4.5],
+			"shade": false,
+			"faces": {
+				"east": {"uv": [9, 7, 10, 8], "texture": "#torch"}
+			}
+		},
+		{
+			"from": [9.5, 4.5, 1.5],
+			"to": [12.5, 7.5, 4.5],
+			"shade": false,
+			"faces": {
+				"west": {"uv": [6, 7, 7, 8], "texture": "#torch"}
+			}
+		},
+		{
+			"from": [5, 1.5, 5],
+			"to": [11, 2.5, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 4.5, 8]},
+			"faces": {
+				"north": {"uv": [0, 1, 1, 0], "texture": "#label"},
+				"east": {"uv": [0, 1, 1, 0], "texture": "#label"},
+				"south": {"uv": [0, 1, 1, 0], "texture": "#label"},
+				"west": {"uv": [0, 0, 1, 0], "texture": "#label"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#label"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#label"}
+			}
+		}
+	]
+}

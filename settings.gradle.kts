@@ -41,4 +41,4 @@ stonecutter {
 	}
 }
 
-rootProject.name = "Rearmament"
+rootProject.name = "Rewired"

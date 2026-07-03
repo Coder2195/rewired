@@ -9,12 +9,12 @@ displayName = "${name}"
 version = "${version}"
 authors = "Me!"
 description = "${description}"
-logoFile = "assets/rearmament/icon.png"
+logoFile = "assets/rewired/icon.png"
 #displayURL = "..."
 #issueTrackerUrl = "..."
 
 [[mixings]]
-config = "rearmament.mixins.json"
+config = "rewired.mixins.json"
 
 [[dependencies.${id}]]
 modId = "minecraft"

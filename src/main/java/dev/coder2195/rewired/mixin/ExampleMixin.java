@@ -1,4 +1,4 @@
-package dev.coder2195.rearmament.mixin;
+package dev.coder2195.rewired.mixin;
 
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;

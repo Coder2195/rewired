@@ -12,17 +12,20 @@
 		"sources": "https://codeberg.org/stonecutter/template-fabric"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/rearmament/icon.png",
+	"icon": "assets/rewired/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-      "dev.coder2195.rearmament.RearmamentFabric"
+      "dev.coder2195.rewired.RewiredFabric"
+		],
+		"fabric-datagen": [
+			"dev.coder2195.rewired.datagen.RewiredDatagen"
 		]
 	},
 	"mixins": [
-		"rearmament.mixins.json"
+		"rewired.mixins.json"
 	],
-	"accessWidener": "rearmament.ct",
+	"accessWidener": "rewired.ct",
 	"depends": {
 		"fabricloader": ">=0.17",
 		"minecraft": "${minecraft}"

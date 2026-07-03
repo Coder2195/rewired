@@ -1,6 +1,7 @@
 plugins {
 	id("net.neoforged.moddev") version "2.0.140"
 	id("neoforge-mutex")
+	id("dev.kikugie.fletching-table.neoforge") version "0.1.0-alpha.22"
 }
 
 val modId = property("mod.id") as String
@@ -69,6 +70,9 @@ tasks {
 			inputs.property(key, value)
 			set(key, value)
 		}
+		sourceSets["main"].resources {
+			srcDir(rootProject.file("src/generated/resources"))
+		}
 
 		val props = buildMap {
 			register("id", "mod.id")
@@ -83,7 +87,11 @@ tasks {
 		val mixinJava = "JAVA_${requiredJava.majorVersion}"
 		filesMatching("*.mixins.json") { expand("java" to mixinJava) }
 
+
+
 		exclude("fabric.mod.json", "*.ct", "*.classtweaker")
+
+
 	}
 
 	named("createMinecraftArtifacts") {

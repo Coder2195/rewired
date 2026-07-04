@@ -1,6 +1,7 @@
 package dev.coder2195.rewired;
 
 import dev.coder2195.rewired.registry.RewiredBlocks;
+import dev.coder2195.rewired.registry.RewiredCreativeModeTabs;
 import dev.coder2195.rewired.registry.RewiredItems;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -18,5 +19,7 @@ public class RewiredNeoforge {
 		RewiredBlocks.BLOCKS.register(modEventBus);
 		RewiredItems.init();
 		RewiredItems.ITEMS.register(modEventBus);
+		RewiredCreativeModeTabs.init();
+		RewiredCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
 	}
 }

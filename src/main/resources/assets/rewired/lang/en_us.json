@@ -1,0 +1,9 @@
+{
+	"itemGroup.rewired.gates": "Logic Gates",
+	"block.rewired.xor_gate": "XOR Gate",
+	"block.rewired.and_gate": "AND Gate",
+	"block.rewired.or_gate": "OR Gate",
+	"block.rewired.nor_gate": "NOR Gate",
+	"block.rewired.xnor_gate": "XNOR Gate",
+	"block.rewired.nand_gate": "NAND Gate"
+}

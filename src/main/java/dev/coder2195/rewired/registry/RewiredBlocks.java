@@ -1,8 +1,7 @@
 package dev.coder2195.rewired.registry;
 
 import dev.coder2195.rewired.Rewired;
-import dev.coder2195.rewired.block.AndGateBlock;
-import dev.coder2195.rewired.block.OrGateBlock;
+import dev.coder2195.rewired.block.*;
 import net.minecraft.core.Holder;
 import net.minecraft.references.BlockItemId;
 import net.minecraft.world.level.block.Block;
@@ -23,6 +22,10 @@ public interface RewiredBlocks {
 
 	BlockItemId AND_GATE_ID = blockItem("and_gate");
 	BlockItemId OR_GATE_ID = blockItem("or_gate");
+	BlockItemId XOR_GATE_ID = blockItem("xor_gate");
+	BlockItemId NAND_GATE_ID = blockItem("nand_gate");
+	BlockItemId NOR_GATE_ID = blockItem("nor_gate");
+	BlockItemId XNOR_GATE_ID = blockItem("xnor_gate");
 
 	static BlockItemId blockItem(String id) {
 		return BlockItemId.create(Rewired.id(id), Rewired.id(id));
@@ -30,6 +33,10 @@ public interface RewiredBlocks {
 
 	Holder<Block> AND_GATE = register(AND_GATE_ID, AndGateBlock::new, BlockBehaviour.Properties.of());
 	Holder<Block> OR_GATE = register(OR_GATE_ID, OrGateBlock::new, BlockBehaviour.Properties.of());
+	Holder<Block> XOR_GATE = register(XOR_GATE_ID, XorGateBlock::new, BlockBehaviour.Properties.of());
+	Holder<Block> NAND_GATE = register(NAND_GATE_ID, NandGateBlock::new, BlockBehaviour.Properties.of());
+	Holder<Block> NOR_GATE = register(NOR_GATE_ID, NorGateBlock::new, BlockBehaviour.Properties.of());
+	Holder<Block> XNOR_GATE = register(XNOR_GATE_ID, XnorGateBlock::new, BlockBehaviour.Properties.of());
 
 	static Holder<Block> register(BlockItemId id, Function<BlockBehaviour.Properties, Block> block, BlockBehaviour.Properties properties) {
 		var blockKey = id.block();

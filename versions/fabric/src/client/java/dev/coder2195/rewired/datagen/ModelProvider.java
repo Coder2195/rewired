@@ -50,7 +50,7 @@ public class ModelProvider extends FabricModelProvider {
 
 	@Override
 	public void generateBlockStateModels(@NonNull BlockModelGenerators generator) {
-		for (var gate : List.of(RewiredBlocks.AND_GATE, RewiredBlocks.OR_GATE)) {
+		for (var gate : List.of(RewiredBlocks.AND_GATE, RewiredBlocks.OR_GATE, RewiredBlocks.XOR_GATE, RewiredBlocks.NAND_GATE, RewiredBlocks.NOR_GATE, RewiredBlocks.XNOR_GATE)) {
 			var gateVariants = PropertyDispatch.initial(GateBlock.LEFT_INPUT, GateBlock.CENTER_INPUT, GateBlock.RIGHT_INPUT, DiodeBlock.POWERED);
 
 			for (var left : List.of(false, true)) {
@@ -72,7 +72,6 @@ public class ModelProvider extends FabricModelProvider {
 								)
 							);
 						}
-
 					}
 				}
 			}
@@ -81,8 +80,7 @@ public class ModelProvider extends FabricModelProvider {
 	}
 
 	public static final List<Holder<Item>> FLAT_ITEMS = List.of(
-		RewiredItems.AND_GATE,
-		RewiredItems.OR_GATE
+		RewiredItems.AND_GATE, RewiredItems.OR_GATE, RewiredItems.XOR_GATE, RewiredItems.NAND_GATE, RewiredItems.NOR_GATE, RewiredItems.XNOR_GATE
 	);
 
 	@Override

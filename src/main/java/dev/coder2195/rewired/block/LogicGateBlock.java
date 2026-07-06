@@ -20,12 +20,12 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 
-public abstract class GateBlock extends DiodeBlock {
+public abstract class LogicGateBlock extends DiodeBlock {
 	public static final BooleanProperty LEFT_INPUT = BooleanProperty.create("left_input");
 	public static final BooleanProperty RIGHT_INPUT = BooleanProperty.create("right_input");
 	public static final BooleanProperty CENTER_INPUT = BooleanProperty.create("center_input");
 
-	public GateBlock(Properties properties) {
+	public LogicGateBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.getStateDefinition().any().setValue(LEFT_INPUT, true).setValue(RIGHT_INPUT, true).setValue(CENTER_INPUT, true).setValue(POWERED, false));
 	}

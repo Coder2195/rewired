@@ -7,7 +7,7 @@ import org.jspecify.annotations.NonNull;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class XorGateBlock extends GateBlock {
+public class XorGateBlock extends LogicGateBlock {
 	public static MapCodec<XorGateBlock> CODEC = simpleCodec(XorGateBlock::new);
 
 	public XorGateBlock(Properties properties) {

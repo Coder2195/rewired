@@ -41,6 +41,13 @@ loom {
 
 	splitEnvironmentSourceSets()
 
+	mods {
+		create("rewired") {
+			sourceSet(sourceSets["main"])
+			sourceSet(sourceSets["client"])
+		}
+	}
+
 
 	decompilerOptions.named("vineflower") {
 		options.put("mark-corresponding-synthetics", "1")
@@ -58,6 +65,7 @@ loom {
 		generateRunConfig = true
 		jvmArguments.add("-Dmixin.debug.export=true -XX:+AllowEnhancedClassRedefinition")
 	}
+
 }
 
 fabricApi {

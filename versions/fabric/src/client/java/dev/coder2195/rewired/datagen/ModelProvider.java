@@ -1,7 +1,7 @@
 package dev.coder2195.rewired.datagen;
 
 import dev.coder2195.rewired.Rewired;
-import dev.coder2195.rewired.block.GateBlock;
+import dev.coder2195.rewired.block.LogicGateBlock;
 import dev.coder2195.rewired.registry.RewiredBlocks;
 import dev.coder2195.rewired.registry.RewiredItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
@@ -51,7 +51,7 @@ public class ModelProvider extends FabricModelProvider {
 	@Override
 	public void generateBlockStateModels(@NonNull BlockModelGenerators generator) {
 		for (var gate : List.of(RewiredBlocks.AND_GATE, RewiredBlocks.OR_GATE, RewiredBlocks.XOR_GATE, RewiredBlocks.NAND_GATE, RewiredBlocks.NOR_GATE, RewiredBlocks.XNOR_GATE)) {
-			var gateVariants = PropertyDispatch.initial(GateBlock.LEFT_INPUT, GateBlock.CENTER_INPUT, GateBlock.RIGHT_INPUT, DiodeBlock.POWERED);
+			var gateVariants = PropertyDispatch.initial(LogicGateBlock.LEFT_INPUT, LogicGateBlock.CENTER_INPUT, LogicGateBlock.RIGHT_INPUT, DiodeBlock.POWERED);
 
 			for (var left : List.of(false, true)) {
 				for (var center : List.of(false, true)) {

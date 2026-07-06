@@ -6,7 +6,7 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 
-public class OrGateBlock extends GateBlock {
+public class OrGateBlock extends LogicGateBlock {
 	public static final MapCodec<OrGateBlock> CODEC = simpleCodec(OrGateBlock::new);
 
 	public OrGateBlock(Properties properties) {

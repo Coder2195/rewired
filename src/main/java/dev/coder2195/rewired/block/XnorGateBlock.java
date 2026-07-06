@@ -6,7 +6,7 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 
-public class XnorGateBlock extends NorGateBlock {
+public class XnorGateBlock extends XorGateBlock {
 	public static final MapCodec<XnorGateBlock> CODEC = simpleCodec(XnorGateBlock::new);
 
 	public XnorGateBlock(Properties properties) {

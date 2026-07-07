@@ -12,18 +12,18 @@ import java.util.function.Function;
 import static dev.coder2195.rewired.Rewired.LOGGER;
 
 //? fabric {
-import net.minecraft.core.Registry;
+/*import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-//? } else {
-/*import static dev.coder2195.rewired.Rewired.MOD_ID;
+*///? } else {
+import static dev.coder2195.rewired.Rewired.MOD_ID;
 
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
-*///? }
+//? }
 
 public interface RewiredItems {
 	//? neoforge
-	//DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
+	DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
 
 	Holder<Item> AND_GATE = registerBlock(RewiredBlocks.AND_GATE_ID, RewiredBlocks.AND_GATE);
 	Holder<Item> OR_GATE = registerBlock(RewiredBlocks.OR_GATE_ID, RewiredBlocks.OR_GATE);
@@ -47,9 +47,9 @@ public interface RewiredItems {
 		properties.setId(key);
 
 		//? fabric
-		return Registry.registerForHolder(BuiltInRegistries.ITEM, key, itemFactory.apply(properties));
+		//return Registry.registerForHolder(BuiltInRegistries.ITEM, key, itemFactory.apply(properties));
 		//? neoforge
-		//return ITEMS.registerItem(key.identifier().getPath(), itemFactory, () -> properties);
+		return ITEMS.registerItem(key.identifier().getPath(), itemFactory, () -> properties);
 	}
 
 	static Holder<Item> registerBlock(BlockItemId key, Holder<Block> block) {
@@ -61,9 +61,9 @@ public interface RewiredItems {
 		properties.useBlockDescriptionPrefix().setId(itemKey);
 
 		//? fabric
-		return register(itemKey, properties1 -> new BlockItem(block.value(), properties), properties);
+		//return register(itemKey, properties1 -> new BlockItem(block.value(), properties), properties);
 		//? neoforge
-		//return ITEMS.registerSimpleBlockItem(itemKey.identifier().getPath(), block::value, () -> properties);
+		return ITEMS.registerSimpleBlockItem(itemKey.identifier().getPath(), block::value, () -> properties);
 	}
 
 

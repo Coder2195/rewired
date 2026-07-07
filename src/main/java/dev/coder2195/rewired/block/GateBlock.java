@@ -11,7 +11,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.ComparatorBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -43,39 +42,58 @@ public abstract class GateBlock extends DiodeBlock implements EntityBlock {
 		return 2;
 	}
 
-
 	@Override
-	protected boolean shouldTurnOn(@NonNull Level level, @NonNull BlockPos pos, @NonNull BlockState state) {
-		return calcPower(level, pos, state) > 0;
+	protected boolean shouldTurnOn(Level level, BlockPos pos, BlockState state) {
+		return this.getOutputSignal(level, pos, state) > 0;
 	}
 
 	@Override
 	protected void checkTickOnNeighbor(Level level, BlockPos pos, BlockState state) {
 		if (!level.getBlockTicks().willTickThisTick(pos, this)) {
-			if (state.getValue(POWERED) != this.shouldTurnOn(level, pos, state)) {
+			int outputValue = this.calculateOutputSignal(level, pos, state);
+			int oldValue = level.getBlockEntity(pos) instanceof GateBlockEntity blockEntity ? blockEntity.getOutputSignal() : 0;
+			if (outputValue != oldValue || state.getValue(POWERED) != this.shouldTurnOn(level, pos, state)) {
 				TickPriority priority = this.shouldPrioritize(level, pos, state) ? TickPriority.HIGH : TickPriority.NORMAL;
 				level.scheduleTick(pos, this, this.getDelay(state), priority);
 			}
 		}
 	}
 
-	private void updateOutputPowered(final Level level, final BlockPos pos, final BlockState state) {
-		final boolean powered = state.getValue(POWERED);
-		final boolean shouldTurnOn = this.shouldTurnOn(level, pos, state);
 
-		if (powered != shouldTurnOn) {
-			if (powered) {
-				level.setBlock(pos, state.setValue(POWERED, false), Block.UPDATE_CLIENTS);
-			} else {
-				level.setBlock(pos, state.setValue(POWERED, true), Block.UPDATE_CLIENTS);
+	@Override
+	protected int getOutputSignal(BlockGetter level, BlockPos pos, BlockState state) {
+		return level.getBlockEntity(pos) instanceof GateBlockEntity blockEntity ? blockEntity.getOutputSignal() : 0;
+	}
+
+	private void refreshOutputState(Level level, BlockPos pos, BlockState state) {
+		int outputValue = this.calculateOutputSignal(level, pos, state);
+		int oldValue = 0;
+		if (level.getBlockEntity(pos) instanceof GateBlockEntity gateBlockEntity) {
+			oldValue = gateBlockEntity.getOutputSignal();
+			gateBlockEntity.setOutputSignal(outputValue);
+		}
+
+		if (oldValue != outputValue) {
+			boolean sourceOn = this.shouldTurnOn(level, pos, state);
+			boolean isOn = state.getValue(POWERED);
+			if (isOn && !sourceOn) {
+				level.setBlock(pos, state.setValue(POWERED, false), UPDATE_CLIENTS);
+			} else if (!isOn && sourceOn) {
+				level.setBlock(pos, state.setValue(POWERED, true), UPDATE_CLIENTS);
 			}
 
-//			level.scheduleTick(pos, this, this.getDelay(state), TickPriority.VERY_HIGH);
+			this.updateNeighborsInFront(level, pos, state);
 		}
 	}
 
+	@Override
+	protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+		this.refreshOutputState(level, pos, state);
+	}
 
-	private int calcPower(Level level, BlockPos pos, BlockState state) {
+	private int calculateOutputSignal(Level level, BlockPos pos, BlockState state) {
+		if (!(level.getBlockEntity(pos) instanceof GateBlockEntity blockEntity)) return 0;
+
 		Direction direction = state.getValue(FACING);
 
 		var leftOn = state.getValue(LEFT_INPUT);
@@ -98,24 +116,17 @@ public abstract class GateBlock extends DiodeBlock implements EntityBlock {
 		BlockState leftBlockState = level.getBlockState(leftPos);
 		int leftSignal = Math.max(level.getSignal(leftPos, direction), leftBlockState.is(Blocks.REDSTONE_WIRE) ? leftBlockState.getValue(RedStoneWireBlock.POWER) : 0);
 
-		return calcSignal(
+		int outSignal = calcSignal(
 			leftOn ? Optional.of(leftSignal) : Optional.empty(),
 			centerOn ? Optional.of(centerSignal) : Optional.empty(),
 			rightOn ? Optional.of(rightSignal) : Optional.empty()
 		);
+
+		return outSignal;
 	}
 
-	@Override
-	protected int getOutputSignal(@NonNull BlockGetter blockGetter, BlockPos pos, BlockState state) {
-		return blockGetter instanceof Level level ? calcPower(level, pos, state) : 0;
-	}
 
 	public abstract int calcSignal(Optional<Integer> leftInput, Optional<Integer> centerInput, Optional<Integer> rightInput);
-
-	@Override
-	protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-		updateOutputPowered(level, pos, state);
-	}
 
 	@Override
 	protected @NonNull InteractionResult useWithoutItem(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull Player player, @NonNull BlockHitResult hitResult) {
@@ -146,7 +157,10 @@ public abstract class GateBlock extends DiodeBlock implements EntityBlock {
 			toToggle = southClick ? LEFT_INPUT : eastClick ? CENTER_INPUT : northClick ? RIGHT_INPUT : null;
 		}
 
-		return super.useWithoutItem(state, level, pos, player, hitResult);
+		if (toToggle == null) return super.useWithoutItem(state, level, pos, player, hitResult);
+		level.setBlock(pos, state.setValue(toToggle, !state.getValue(toToggle)), Block.UPDATE_CLIENTS);
+		this.refreshOutputState(level, pos, state);
+		return InteractionResult.SUCCESS;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package dev.coder2195.rewired;
 
+import dev.coder2195.rewired.registry.RewiredBlockEntityTypes;
 import dev.coder2195.rewired.registry.RewiredBlocks;
 import dev.coder2195.rewired.registry.RewiredCreativeModeTabs;
 import dev.coder2195.rewired.registry.RewiredItems;
@@ -21,5 +22,7 @@ public class RewiredNeoforge {
 		RewiredItems.ITEMS.register(modEventBus);
 		RewiredCreativeModeTabs.init();
 		RewiredCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
+		RewiredBlockEntityTypes.init();
+		RewiredBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
 	}
 }

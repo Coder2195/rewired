@@ -7,18 +7,18 @@ import net.minecraft.references.BlockItemId;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 //? fabric {
-import net.minecraft.core.Registry;
+/*import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-//? } else {
-/*import static dev.coder2195.rewired.Rewired.MOD_ID;
+*///? } else {
+import static dev.coder2195.rewired.Rewired.MOD_ID;
 import net.neoforged.neoforge.registries.DeferredRegister;
-*///? }
+//? }
 
 import java.util.function.Function;
 
 public interface RewiredBlocks {
 	//? neoforge
-	//DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Rewired.MOD_ID);
+	DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Rewired.MOD_ID);
 
 	BlockItemId AND_GATE_ID = blockItem("and_gate");
 	BlockItemId OR_GATE_ID = blockItem("or_gate");
@@ -54,9 +54,9 @@ public interface RewiredBlocks {
 		properties.setId(blockKey);
 
 		//? fabric
-		return Registry.registerForHolder(BuiltInRegistries.BLOCK, blockKey, block.apply(properties));
+		//return Registry.registerForHolder(BuiltInRegistries.BLOCK, blockKey, block.apply(properties));
 		//? neoforge
-		//return BLOCKS.registerBlock(blockKey.identifier().getPath(), block, () -> properties);
+		return BLOCKS.registerBlock(blockKey.identifier().getPath(), block, () -> properties);
 	}
 
   static void init() {

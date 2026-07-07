@@ -6,7 +6,7 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 
-public class AverageGateBlock extends LogicGateBlock {
+public class AverageGateBlock extends GateBlock {
 	public static final MapCodec<AverageGateBlock> CODEC = simpleCodec(AverageGateBlock::new);
 
 	public AverageGateBlock(Properties properties) {

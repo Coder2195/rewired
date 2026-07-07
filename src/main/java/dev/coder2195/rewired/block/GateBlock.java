@@ -1,31 +1,33 @@
 package dev.coder2195.rewired.block;
 
+import dev.coder2195.rewired.block.entity.GateBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DiodeBlock;
-import net.minecraft.world.level.block.RedStoneWireBlock;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.ComparatorBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.ticks.TickPriority;
 import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Optional;
 
-public abstract class LogicGateBlock extends DiodeBlock {
+public abstract class GateBlock extends DiodeBlock implements EntityBlock {
 	public static final BooleanProperty LEFT_INPUT = BooleanProperty.create("left_input");
 	public static final BooleanProperty RIGHT_INPUT = BooleanProperty.create("right_input");
 	public static final BooleanProperty CENTER_INPUT = BooleanProperty.create("center_input");
 
-	public LogicGateBlock(Properties properties) {
+	public GateBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.getStateDefinition().any().setValue(LEFT_INPUT, true).setValue(RIGHT_INPUT, true).setValue(CENTER_INPUT, true).setValue(POWERED, false));
 	}
@@ -38,13 +40,42 @@ public abstract class LogicGateBlock extends DiodeBlock {
 
 	@Override
 	protected int getDelay(@NonNull BlockState state) {
-		return 0;
+		return 2;
 	}
 
 
 	@Override
-	protected int getInputSignal(Level level, BlockPos pos, BlockState state) {
+	protected boolean shouldTurnOn(@NonNull Level level, @NonNull BlockPos pos, @NonNull BlockState state) {
+		return calcPower(level, pos, state) > 0;
+	}
 
+	@Override
+	protected void checkTickOnNeighbor(Level level, BlockPos pos, BlockState state) {
+		if (!level.getBlockTicks().willTickThisTick(pos, this)) {
+			if (state.getValue(POWERED) != this.shouldTurnOn(level, pos, state)) {
+				TickPriority priority = this.shouldPrioritize(level, pos, state) ? TickPriority.HIGH : TickPriority.NORMAL;
+				level.scheduleTick(pos, this, this.getDelay(state), priority);
+			}
+		}
+	}
+
+	private void updateOutputPowered(final Level level, final BlockPos pos, final BlockState state) {
+		final boolean powered = state.getValue(POWERED);
+		final boolean shouldTurnOn = this.shouldTurnOn(level, pos, state);
+
+		if (powered != shouldTurnOn) {
+			if (powered) {
+				level.setBlock(pos, state.setValue(POWERED, false), Block.UPDATE_CLIENTS);
+			} else {
+				level.setBlock(pos, state.setValue(POWERED, true), Block.UPDATE_CLIENTS);
+			}
+
+//			level.scheduleTick(pos, this, this.getDelay(state), TickPriority.VERY_HIGH);
+		}
+	}
+
+
+	private int calcPower(Level level, BlockPos pos, BlockState state) {
 		Direction direction = state.getValue(FACING);
 
 		var leftOn = state.getValue(LEFT_INPUT);
@@ -74,16 +105,16 @@ public abstract class LogicGateBlock extends DiodeBlock {
 		);
 	}
 
+	@Override
+	protected int getOutputSignal(@NonNull BlockGetter blockGetter, BlockPos pos, BlockState state) {
+		return blockGetter instanceof Level level ? calcPower(level, pos, state) : 0;
+	}
+
 	public abstract int calcSignal(Optional<Integer> leftInput, Optional<Integer> centerInput, Optional<Integer> rightInput);
 
-
 	@Override
-	protected void tick(final @NonNull BlockState state, final @NonNull ServerLevel level, final @NonNull BlockPos pos, final @NonNull RandomSource random) {
-		boolean on = state.getValue(POWERED);
-		boolean shouldTurnOn = this.shouldTurnOn(level, pos, state);
-		if (on == shouldTurnOn) return;
-		level.setBlock(pos, state.setValue(POWERED, shouldTurnOn), 2);
-		level.scheduleTick(pos, this, this.getDelay(state), TickPriority.VERY_HIGH);
+	protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+		updateOutputPowered(level, pos, state);
 	}
 
 	@Override
@@ -115,14 +146,11 @@ public abstract class LogicGateBlock extends DiodeBlock {
 			toToggle = southClick ? LEFT_INPUT : eastClick ? CENTER_INPUT : northClick ? RIGHT_INPUT : null;
 		}
 
-
-		if (toToggle != null) {
-			var newState = state.setValue(toToggle, !state.getValue(toToggle));
-			level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
-			level.scheduleTick(pos, this, this.getDelay(newState));
-			return InteractionResult.SUCCESS;
-		}
-
 		return super.useWithoutItem(state, level, pos, player, hitResult);
+	}
+
+	@Override
+	public @Nullable BlockEntity newBlockEntity(@NonNull BlockPos worldPosition, @NonNull BlockState blockState) {
+		return new GateBlockEntity(worldPosition, blockState);
 	}
 }

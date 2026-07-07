@@ -31,6 +31,17 @@ public interface RewiredItems {
 	Holder<Item> NAND_GATE = registerBlock(RewiredBlocks.NAND_GATE_ID, RewiredBlocks.NAND_GATE);
 	Holder<Item> NOR_GATE = registerBlock(RewiredBlocks.NOR_GATE_ID, RewiredBlocks.NOR_GATE);
 	Holder<Item> XNOR_GATE = registerBlock(RewiredBlocks.XNOR_GATE_ID, RewiredBlocks.XNOR_GATE);
+	Holder<Item> AVERAGE_GATE = registerBlock(RewiredBlocks.AVERAGE_GATE_ID, RewiredBlocks.AVERAGE_GATE);
+
+	Holder<Item>[] GATES = new Holder[]{
+		AND_GATE,
+		OR_GATE,
+		XOR_GATE,
+		NAND_GATE,
+		NOR_GATE,
+		XNOR_GATE,
+		AVERAGE_GATE
+	};
 
 	static Holder<Item> register(ResourceKey<Item> key, Function<Item.Properties, Item> itemFactory, Item.Properties properties) {
 		properties.setId(key);

@@ -21,7 +21,7 @@ public interface RewiredCreativeModeTabs {
 	//DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(BuiltInRegistries.CREATIVE_MODE_TAB, Rewired.MOD_ID);
 
 	Holder<CreativeModeTab> GATES = register("gates", () -> new ItemStack(RewiredItems.OR_GATE.value()), (itemDisplayParameters, output) -> {
-		for (var item: List.of(RewiredItems.AND_GATE, RewiredItems.OR_GATE, RewiredItems.XOR_GATE, RewiredItems.NAND_GATE, RewiredItems.NOR_GATE, RewiredItems.XNOR_GATE)) {
+		for (var item: List.of(RewiredItems.AND_GATE, RewiredItems.OR_GATE, RewiredItems.XOR_GATE, RewiredItems.NAND_GATE, RewiredItems.NOR_GATE, RewiredItems.XNOR_GATE, RewiredItems.AVERAGE_GATE)) {
 			output.accept(item.value());
 		}
 	});

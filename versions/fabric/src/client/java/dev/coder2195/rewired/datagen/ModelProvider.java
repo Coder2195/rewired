@@ -1,7 +1,7 @@
 package dev.coder2195.rewired.datagen;
 
 import dev.coder2195.rewired.Rewired;
-import dev.coder2195.rewired.block.LogicGateBlock;
+import dev.coder2195.rewired.block.GateBlock;
 import dev.coder2195.rewired.registry.RewiredBlocks;
 import dev.coder2195.rewired.registry.RewiredItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
@@ -50,9 +50,8 @@ public class ModelProvider extends FabricModelProvider {
 
 	@Override
 	public void generateBlockStateModels(@NonNull BlockModelGenerators generator) {
-		for (var gate : List.of(RewiredBlocks.AND_GATE, RewiredBlocks.OR_GATE, RewiredBlocks.XOR_GATE, RewiredBlocks.NAND_GATE, RewiredBlocks.NOR_GATE, RewiredBlocks.XNOR_GATE)) {
-			var gateVariants = PropertyDispatch.initial(LogicGateBlock.LEFT_INPUT, LogicGateBlock.CENTER_INPUT, LogicGateBlock.RIGHT_INPUT, DiodeBlock.POWERED);
-
+		for (var gate : RewiredBlocks.GATES) {
+			var gateVariants = PropertyDispatch.initial(GateBlock.LEFT_INPUT, GateBlock.CENTER_INPUT, GateBlock.RIGHT_INPUT, DiodeBlock.POWERED);
 			for (var left : List.of(false, true)) {
 				for (var center : List.of(false, true)) {
 					for (var right : List.of(false, true)) {
@@ -79,13 +78,10 @@ public class ModelProvider extends FabricModelProvider {
 		}
 	}
 
-	public static final List<Holder<Item>> FLAT_ITEMS = List.of(
-		RewiredItems.AND_GATE, RewiredItems.OR_GATE, RewiredItems.XOR_GATE, RewiredItems.NAND_GATE, RewiredItems.NOR_GATE, RewiredItems.XNOR_GATE
-	);
 
 	@Override
 	public void generateItemModels(@NonNull ItemModelGenerators generator) {
-		for (var item : FLAT_ITEMS) {
+		for (var item : RewiredItems.GATES) {
 			generator.generateFlatItem(item.value(), ModelTemplates.FLAT_ITEM);
 		}
 	}

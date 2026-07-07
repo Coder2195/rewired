@@ -6,7 +6,7 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 
-public class AndGateBlock extends LogicGateBlock {
+public class AndGateBlock extends GateBlock {
 	public static MapCodec<AndGateBlock> CODEC = simpleCodec(AndGateBlock::new);
 
 	public AndGateBlock(Properties properties) {

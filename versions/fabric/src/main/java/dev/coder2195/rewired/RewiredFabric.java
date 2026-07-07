@@ -1,6 +1,7 @@
 
 package dev.coder2195.rewired;
 
+import dev.coder2195.rewired.registry.RewiredBlockEntityTypes;
 import dev.coder2195.rewired.registry.RewiredBlocks;
 import dev.coder2195.rewired.registry.RewiredCreativeModeTabs;
 import dev.coder2195.rewired.registry.RewiredItems;
@@ -15,6 +16,7 @@ public class RewiredFabric implements ModInitializer {
 		RewiredBlocks.init();
 		RewiredItems.init();
 		RewiredCreativeModeTabs.init();
+		RewiredBlockEntityTypes.init();
 	}
 }
 

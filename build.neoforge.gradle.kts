@@ -111,6 +111,12 @@ tasks {
 	}
 }
 
+fletchingTable {
+	neoforge /* or neoforge { } */ {
+		applyMixinConfig = false
+	}
+}
+
 publishMods {
 	file = tasks.jar.map { it.archiveFile.get() }
 	displayName = "${property("mod.name")} ${property("mod.version")} for Neoforge"

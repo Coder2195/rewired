@@ -34,7 +34,7 @@ dependencies {
 }
 
 loom {
-	fabricModJsonPath = rootProject.file("src/main/resources/fabric.mod.json") // Useful for interface injection
+//	fabricModJsonPath = rootProject.file("src/main/resources/fabric.mod.json") // Useful for interface injection
 	accessWidenerPath = sc.process(
 		rootProject.file("src/main/resources/rewired.ct"),
 		"build/processed.ct"
@@ -73,6 +73,12 @@ fabricApi {
 	configureDataGeneration {
 		client = true
 		outputDirectory = rootProject.file("src/generated/resources")
+	}
+}
+
+fletchingTable {
+	fabric /* or neoforge { } */ {
+		applyMixinConfig = false
 	}
 }
 

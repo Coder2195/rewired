@@ -115,7 +115,7 @@ publishMods {
 	file = tasks.jar.map { it.archiveFile.get() }
 	displayName = "${property("mod.name")} ${property("mod.version")} for Neoforge"
 	version = property("mod.version") as String
-	changelog = rootProject.file("CHANGELOG.md").readText()
+	changelog.set(rootProject.file("CHANGELOG.md").readText())
 	type = STABLE
 	modLoaders.add("neoforge")
 

@@ -21,6 +21,10 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.Optional;
 
+/**
+ * When I wrote this, only God knows what actually is happening here, because diodes are hard, most of it is copied from comparator
+ * if you got a better impl, make a PR, otherwise DO NOT TOUCH
+ */
 public abstract class GateBlock extends DiodeBlock implements EntityBlock {
 	public static final BooleanProperty LEFT_INPUT = BooleanProperty.create("left_input");
 	public static final BooleanProperty RIGHT_INPUT = BooleanProperty.create("right_input");
@@ -39,16 +43,16 @@ public abstract class GateBlock extends DiodeBlock implements EntityBlock {
 
 	@Override
 	protected int getDelay(@NonNull BlockState state) {
-		return 2;
+		return 0;
 	}
 
 	@Override
-	protected boolean shouldTurnOn(Level level, BlockPos pos, BlockState state) {
+	protected boolean shouldTurnOn(@NonNull Level level, @NonNull BlockPos pos, @NonNull BlockState state) {
 		return this.getOutputSignal(level, pos, state) > 0;
 	}
 
 	@Override
-	protected void checkTickOnNeighbor(Level level, BlockPos pos, BlockState state) {
+	protected void checkTickOnNeighbor(Level level, @NonNull BlockPos pos, @NonNull BlockState state) {
 		if (!level.getBlockTicks().willTickThisTick(pos, this)) {
 			int outputValue = this.calculateOutputSignal(level, pos, state);
 			int oldValue = level.getBlockEntity(pos) instanceof GateBlockEntity blockEntity ? blockEntity.getOutputSignal() : 0;
@@ -84,6 +88,11 @@ public abstract class GateBlock extends DiodeBlock implements EntityBlock {
 
 			this.updateNeighborsInFront(level, pos, state);
 		}
+	}
+
+	@Override
+	protected void onPlace(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull BlockState oldState, boolean movedByPiston) {
+		this.refreshOutputState(level, pos, state);
 	}
 
 	@Override

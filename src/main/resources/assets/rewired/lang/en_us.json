@@ -5,5 +5,8 @@
 	"block.rewired.or_gate": "OR Gate",
 	"block.rewired.nor_gate": "NOR Gate",
 	"block.rewired.xnor_gate": "XNOR Gate",
-	"block.rewired.nand_gate": "NAND Gate"
+	"block.rewired.nand_gate": "NAND Gate",
+	"block.rewired.average_gate": "Average Gate",
+	"block.rewired.max_gate": "Max Gate",
+	"block.rewired.min_gate": "Min Gate"
 }

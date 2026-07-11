@@ -1,0 +1,244 @@
+{
+  "variants": {
+    "center_input=false,facing=east,left_input=false,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate",
+      "y": 270
+    },
+    "center_input=false,facing=east,left_input=false,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_right",
+      "y": 270
+    },
+    "center_input=false,facing=east,left_input=false,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_on",
+      "y": 270
+    },
+    "center_input=false,facing=east,left_input=false,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_right_on",
+      "y": 270
+    },
+    "center_input=false,facing=east,left_input=true,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate_left",
+      "y": 270
+    },
+    "center_input=false,facing=east,left_input=true,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_left_right",
+      "y": 270
+    },
+    "center_input=false,facing=east,left_input=true,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_left_on",
+      "y": 270
+    },
+    "center_input=false,facing=east,left_input=true,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_left_right_on",
+      "y": 270
+    },
+    "center_input=false,facing=north,left_input=false,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate",
+      "y": 180
+    },
+    "center_input=false,facing=north,left_input=false,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_right",
+      "y": 180
+    },
+    "center_input=false,facing=north,left_input=false,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_on",
+      "y": 180
+    },
+    "center_input=false,facing=north,left_input=false,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_right_on",
+      "y": 180
+    },
+    "center_input=false,facing=north,left_input=true,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate_left",
+      "y": 180
+    },
+    "center_input=false,facing=north,left_input=true,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_left_right",
+      "y": 180
+    },
+    "center_input=false,facing=north,left_input=true,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_left_on",
+      "y": 180
+    },
+    "center_input=false,facing=north,left_input=true,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_left_right_on",
+      "y": 180
+    },
+    "center_input=false,facing=south,left_input=false,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate"
+    },
+    "center_input=false,facing=south,left_input=false,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_right"
+    },
+    "center_input=false,facing=south,left_input=false,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_on"
+    },
+    "center_input=false,facing=south,left_input=false,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_right_on"
+    },
+    "center_input=false,facing=south,left_input=true,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate_left"
+    },
+    "center_input=false,facing=south,left_input=true,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_left_right"
+    },
+    "center_input=false,facing=south,left_input=true,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_left_on"
+    },
+    "center_input=false,facing=south,left_input=true,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_left_right_on"
+    },
+    "center_input=false,facing=west,left_input=false,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate",
+      "y": 90
+    },
+    "center_input=false,facing=west,left_input=false,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_right",
+      "y": 90
+    },
+    "center_input=false,facing=west,left_input=false,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_on",
+      "y": 90
+    },
+    "center_input=false,facing=west,left_input=false,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_right_on",
+      "y": 90
+    },
+    "center_input=false,facing=west,left_input=true,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate_left",
+      "y": 90
+    },
+    "center_input=false,facing=west,left_input=true,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_left_right",
+      "y": 90
+    },
+    "center_input=false,facing=west,left_input=true,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_left_on",
+      "y": 90
+    },
+    "center_input=false,facing=west,left_input=true,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_left_right_on",
+      "y": 90
+    },
+    "center_input=true,facing=east,left_input=false,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate_center",
+      "y": 270
+    },
+    "center_input=true,facing=east,left_input=false,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_center_right",
+      "y": 270
+    },
+    "center_input=true,facing=east,left_input=false,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_center_on",
+      "y": 270
+    },
+    "center_input=true,facing=east,left_input=false,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_center_right_on",
+      "y": 270
+    },
+    "center_input=true,facing=east,left_input=true,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate_left_center",
+      "y": 270
+    },
+    "center_input=true,facing=east,left_input=true,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_left_center_right",
+      "y": 270
+    },
+    "center_input=true,facing=east,left_input=true,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_left_center_on",
+      "y": 270
+    },
+    "center_input=true,facing=east,left_input=true,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_left_center_right_on",
+      "y": 270
+    },
+    "center_input=true,facing=north,left_input=false,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate_center",
+      "y": 180
+    },
+    "center_input=true,facing=north,left_input=false,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_center_right",
+      "y": 180
+    },
+    "center_input=true,facing=north,left_input=false,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_center_on",
+      "y": 180
+    },
+    "center_input=true,facing=north,left_input=false,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_center_right_on",
+      "y": 180
+    },
+    "center_input=true,facing=north,left_input=true,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate_left_center",
+      "y": 180
+    },
+    "center_input=true,facing=north,left_input=true,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_left_center_right",
+      "y": 180
+    },
+    "center_input=true,facing=north,left_input=true,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_left_center_on",
+      "y": 180
+    },
+    "center_input=true,facing=north,left_input=true,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_left_center_right_on",
+      "y": 180
+    },
+    "center_input=true,facing=south,left_input=false,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate_center"
+    },
+    "center_input=true,facing=south,left_input=false,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_center_right"
+    },
+    "center_input=true,facing=south,left_input=false,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_center_on"
+    },
+    "center_input=true,facing=south,left_input=false,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_center_right_on"
+    },
+    "center_input=true,facing=south,left_input=true,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate_left_center"
+    },
+    "center_input=true,facing=south,left_input=true,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_left_center_right"
+    },
+    "center_input=true,facing=south,left_input=true,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_left_center_on"
+    },
+    "center_input=true,facing=south,left_input=true,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_left_center_right_on"
+    },
+    "center_input=true,facing=west,left_input=false,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate_center",
+      "y": 90
+    },
+    "center_input=true,facing=west,left_input=false,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_center_right",
+      "y": 90
+    },
+    "center_input=true,facing=west,left_input=false,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_center_on",
+      "y": 90
+    },
+    "center_input=true,facing=west,left_input=false,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_center_right_on",
+      "y": 90
+    },
+    "center_input=true,facing=west,left_input=true,powered=false,right_input=false": {
+      "model": "rewired:block/min_gate_left_center",
+      "y": 90
+    },
+    "center_input=true,facing=west,left_input=true,powered=false,right_input=true": {
+      "model": "rewired:block/min_gate_left_center_right",
+      "y": 90
+    },
+    "center_input=true,facing=west,left_input=true,powered=true,right_input=false": {
+      "model": "rewired:block/min_gate_left_center_on",
+      "y": 90
+    },
+    "center_input=true,facing=west,left_input=true,powered=true,right_input=true": {
+      "model": "rewired:block/min_gate_left_center_right_on",
+      "y": 90
+    }
+  }
+}

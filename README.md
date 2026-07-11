@@ -1,12 +1,15 @@
-# Stonecutter Fabric & NeoForge template
+# Rewired
 
-honestly i have no clue what it does but it works lol
+[![Modrinth](https://img.shields.io/modrinth/dt/rewired?label=Modrinth&logo=modrinth&style=for-the-badge)](https://modrinth.com/mod/rewired)
+[![CurseForge](https://img.shields.io/curseforge/dt/1606379?style=for-the-badge&logo=curseforge&logoColor=FF5103&label=CurseForge&color=FF5103)](https://www.curseforge.com/minecraft/mc-mods/rewired-mod)
+[![Forks](https://img.shields.io/github/forks/Coder2195/rewired?style=for-the-badge&logo=github&color=green)](https://github.com/Coder2195/rewired/forks)
+[![Stars](https://img.shields.io/github/stars/Coder2195/rewired?style=for-the-badge&logo=github&color=yellow)](https://github.com/Coder2195/rewired/stargazers)
+[![Code Size](https://img.shields.io/github/languages/code-size/Coder2195/rewired?style=for-the-badge&color=purple&logoColor=white)](https://github.com/Coder2195/rewired)
+[![Repo Size](https://img.shields.io/github/repo-size/Coder2195/rewired?logo=dropbox&style=for-the-badge&color=red)](https://github.com/Coder2195/rewired)
 
-## Useful links
+---
+Rewired is a mod that aims to rehaul redstone with utilities such as gates, wires, and more.
 
-- [Stonecutter beginner's guide](https://stonecutter.kikugie.dev/wiki/start/): *spoiler: you* ***need*** *to understand
-  how it works!*
-- [Fabric Discord server](https://discord.gg/v6v4pMv): for mod development help.
-- [Stonecutter Discord server](https://discord.kikugie.dev/): for Stonecutter and Gradle help.
-- [How To Ask Questions - the guide](http://www.catb.org/esr/faqs/smart-questions.html): also
-  in [video form](https://www.youtube.com/results?search_query=How+To+Ask+Questions+The+Smart+Way).
+It is an ambitious project that is still in development. As because this is an content mod, we are NOT porting to older versions, only offering latest version support.
+
+If you are an maintainer interested in maintaining LTS, please let me know, but remember, that is going to be YOUR port and we are not responsible for any issues that arise from it.

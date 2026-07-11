@@ -1,8 +1,10 @@
 plugins {
 	id("dev.kikugie.stonecutter")
+
+	id("co.uzzu.dotenv.gradle") version "4.0.0"
 }
 
-stonecutter active "neoforge"
+stonecutter active "fabric"
 
 // See https://stonecutter.kikugie.dev/wiki/config/params
 stonecutter parameters {

@@ -5,18 +5,17 @@ mod.group = "dev.coder2195.rewired"
 mod.description = "new mod lol"
 mod.version = "0.1.0"
 
-deps.fabric_loader = "0.19.3"
-loomx.loom_version = "1.17-SNAPSHOT"
+publish.modrinth = "DpUuJr9O"
+publish.curseforge = "1606379"
 
-["26.2"]
 mod.mc_releases = ["26.2"]
-
 
 [fabric]
 mod.mc_compat = "~26.2"
 deps.fabric_api = "0.152.2+26.2"
+deps.fabric_loader = "0.19.3"
 
 
 [neoforge]
 mod.mc_compat = "[26.2, 26.3)"
-deps.neo_loader = "26.2.0.6-beta"
+deps.neo_loader = "26.2.0.10-beta"

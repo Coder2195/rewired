@@ -4,9 +4,13 @@ import dev.coder2195.rewired.registry.RewiredBlockEntityTypes;
 import dev.coder2195.rewired.registry.RewiredBlocks;
 import dev.coder2195.rewired.registry.RewiredCreativeModeTabs;
 import dev.coder2195.rewired.registry.RewiredItems;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.registries.RegisterEvent;
 
 import static dev.coder2195.rewired.Rewired.LOGGER;
 import static dev.coder2195.rewired.Rewired.MOD_ID;

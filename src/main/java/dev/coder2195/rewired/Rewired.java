@@ -12,8 +12,8 @@ public interface Rewired {
 	String VERSION = /*$ mod_version*/ "0.1.0";
 	String MINECRAFT = /*$ minecraft*/ "26.2";
 	LoaderAccess INSTANCE =
-		/*? if fabric{*//*new FabricLoaderAccess();
-	 *//*?} elif neoforge */new NeoforgeLoaderAccess();
+		/*? if fabric{*/new FabricLoaderAccess();
+	 /*?} elif neoforge *///new NeoforgeLoaderAccess();
 
 
 	static Identifier id(String path) {
@@ -46,7 +46,7 @@ public interface Rewired {
 	}
 
 	//? if fabric {
-	/*final class FabricLoaderAccess implements LoaderAccess {
+	final class FabricLoaderAccess implements LoaderAccess {
 		private final net.fabricmc.loader.api.FabricLoader loader = net.fabricmc.loader.api.FabricLoader.getInstance();
 
 		@Override
@@ -64,14 +64,14 @@ public interface Rewired {
 			return loader.isModLoaded(id);
 		}
 	}
-	*///?} elif neoforge {
-	static final class NeoforgeLoaderAccess implements LoaderAccess {
+	//?} elif neoforge {
+	/*static final class NeoforgeLoaderAccess implements LoaderAccess {
 		private final net.neoforged.api.distmarker.Dist dist =
-			/*? if >=1.21.9 {*/net.neoforged.fml.loading.FMLEnvironment.getDist();
-		/*?} else*///net.neoforged.fml.loading.FMLEnvironment.dist;
+			/^? if >=1.21.9 {^/net.neoforged.fml.loading.FMLEnvironment.getDist();
+		/^?} else^///net.neoforged.fml.loading.FMLEnvironment.dist;
 		private final net.neoforged.fml.loading.LoadingModList mods =
-			/*? if >=1.21.9 {*/net.neoforged.fml.loading.FMLLoader.getCurrent().getLoadingModList();
-		/*?} else*///net.neoforged.fml.loading.FMLLoader.getLoadingModList();
+			/^? if >=1.21.9 {^/net.neoforged.fml.loading.FMLLoader.getCurrent().getLoadingModList();
+		/^?} else^///net.neoforged.fml.loading.FMLLoader.getLoadingModList();
 
 		@Override
 		public boolean isClient() {
@@ -88,5 +88,5 @@ public interface Rewired {
 			return mods.getModFileById(id) != null;
 		}
 	}
-	//?}
+	*///?}
 }

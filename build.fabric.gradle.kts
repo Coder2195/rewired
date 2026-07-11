@@ -1,6 +1,7 @@
 plugins {
 	id("net.fabricmc.fabric-loom")
 	id("dev.kikugie.fletching-table.fabric") version "0.1.0-alpha.22"
+	id("me.modmuss50.mod-publish-plugin") version "1.1.0"
 }
 
 // DO NOT set group = ...!
@@ -121,5 +122,33 @@ tasks {
 
 		inputs.property("version", project.property("mod.version"))
 		into(rootProject.layout.buildDirectory.file("libs/${project.property("mod.version")}"))
+	}
+}
+
+
+publishMods {
+	file = tasks.jar.map { it.archiveFile.get() }
+	displayName = "${property("mod.name")} ${property("mod.version")} for Fabric"
+	version = property("mod.version") as String
+	changelog = rootProject.file("CHANGELOG.md").readText()
+	type = STABLE
+	modLoaders.add("fabric")
+
+	dryRun = !env.isPresent("MODRINTH_TOKEN")
+		|| !env.isPresent("CURSEFORGE_TOKEN")
+
+	modrinth {
+		projectId = property("publish.modrinth") as String
+		accessToken = env.fetch("MODRINTH_TOKEN", "")
+		minecraftVersions.addAll(compatibleVersions)
+		requires("fabric-api")
+		type = ALPHA
+	}
+
+	curseforge {
+		projectId = property("publish.curseforge") as String
+		accessToken = env.fetch("CURSEFORGE_TOKEN", "")
+		requires("fabric-api")
+		minecraftVersions.addAll(compatibleVersions)
 	}
 }

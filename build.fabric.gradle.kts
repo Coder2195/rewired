@@ -1,12 +1,13 @@
 plugins {
 	id("net.fabricmc.fabric-loom")
 	id("dev.kikugie.fletching-table.fabric") version "0.1.0-alpha.22"
-	id("me.modmuss50.mod-publish-plugin") version "1.1.0"
+	id("me.modmuss50.mod-publish-plugin") version "2.1.1"
 }
 
 // DO NOT set group = ...!
-val version = property("mod.version")
-base.archivesName = "${property("mod.id") as String}-fabric"
+val modId = property("mod.id") as String
+version = "${property("mod.version")}"
+base.archivesName = "${modId}-fabric"
 
 val requiredJava = JavaVersion.VERSION_25
 
@@ -149,6 +150,8 @@ publishMods {
 		minecraftVersions.addAll(compatibleVersions)
 		requires("fabric-api")
 		type = ALPHA
+
+		environment = CLIENT_AND_SERVER
 	}
 
 	curseforge {
@@ -156,5 +159,9 @@ publishMods {
 		accessToken = env.fetch("CURSEFORGE_TOKEN", "")
 		requires("fabric-api")
 		minecraftVersions.addAll(compatibleVersions)
+
+		client = true
+		server = true
+		changelogType = "markdown"
 	}
 }

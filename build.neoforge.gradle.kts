@@ -2,11 +2,11 @@ plugins {
 	id("net.neoforged.moddev") version "2.0.140"
 	id("neoforge-mutex")
 	id("dev.kikugie.fletching-table.neoforge") version "0.1.0-alpha.22"
-	id("me.modmuss50.mod-publish-plugin") version "1.1.0"
+	id("me.modmuss50.mod-publish-plugin") version "2.1.1"
 }
 
 val modId = property("mod.id") as String
-version = "${property("mod.version")}+${sc.current.version}"
+version = "${property("mod.version")}"
 base.archivesName = "${modId}-neoforge"
 
 val compatibleVersions: List<String> = sc.properties.rawOrNull("mod", "mc_releases")
@@ -120,6 +120,7 @@ fletchingTable {
 publishMods {
 	file = tasks.jar.map { it.archiveFile.get() }
 	displayName = "${property("mod.name")} ${property("mod.version")} for Neoforge"
+	
 	version = property("mod.version") as String
 	changelog.set(rootProject.file("CHANGELOG.md").readText())
 	type = STABLE
@@ -133,11 +134,16 @@ publishMods {
 		accessToken = env.fetch("MODRINTH_TOKEN", "")
 		minecraftVersions.addAll(compatibleVersions)
 		type = ALPHA
+		environment = CLIENT_AND_SERVER
 	}
 
 	curseforge {
 		projectId = property("publish.curseforge") as String
 		accessToken = env.fetch("CURSEFORGE_TOKEN", "")
 		minecraftVersions.addAll(compatibleVersions)
+
+		client = true
+		server = true
+		changelogType = "markdown"
 	}
 }

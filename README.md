@@ -1,5 +1,7 @@
 # Rewired
 
+> Note for moderators and people: This mod is NOT the same thing as <https://www.curseforge.com/minecraft/mc-mods/ReWIRED>, and my mod is an original redstone mod. This is fully an original work of my own. This mod is called Rewired, while the other is called ReWIRED and is of completely different origin.
+
 [![Modrinth](https://img.shields.io/modrinth/dt/rewired?label=Modrinth&logo=modrinth&style=for-the-badge)](https://modrinth.com/mod/rewired)
 [![CurseForge](https://img.shields.io/curseforge/dt/1606379?style=for-the-badge&logo=curseforge&logoColor=FF5103&label=CurseForge&color=FF5103)](https://www.curseforge.com/minecraft/mc-mods/rewired-mod)
 [![Forks](https://img.shields.io/github/forks/Coder2195/rewired?style=for-the-badge&logo=github&color=green)](https://github.com/Coder2195/rewired/forks)
@@ -9,6 +11,15 @@
 
 ---
 Rewired is a mod that aims to rehaul redstone with utilities such as gates, wires, and more.
+
+The project plans to add or currently has:
+- Logic gates
+- New dispenser like blocks
+- LEDS
+- Wireless Redstone
+- Clocks
+- Adders
+- More sensor blocks (akin to sculk sensors and daylight sensors)
 
 It is an ambitious project that is still in development. As because this is an content mod, we are NOT porting to older versions, only offering latest version support.
 

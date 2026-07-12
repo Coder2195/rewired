@@ -145,5 +145,6 @@ publishMods {
 		client = true
 		server = true
 		changelogType = "markdown"
+		javaVersions.add(JavaVersion.VERSION_25)
 	}
 }
